@@ -44,6 +44,7 @@ def check_enemy_exists():
         pyautogui.press('ctrl')
         time.sleep(1)
         pyautogui.press('ctrl')
+        time.sleep(1)
 
 
 
@@ -66,15 +67,17 @@ def on_press(key):
         print("Exiting...")
         stop_program = True
         return False
+    
+    if key == keyboard.Key.f7:
+        
+        running = not running
 
-    running = not running
+        if running:
+            print("Started checking every 2 seconds...")
+        else:
+            print("Stopped checking.")
 
-    if running:
-        print("Started checking every 2 seconds...")
-    else:
-        print("Stopped checking.")
-
-print("Press any key to start / stop checking.")
+print("Press F7 to start / stop checking.")
 print("Press ESC to exit.")
 
 t = threading.Thread(target=worker, daemon=True)
