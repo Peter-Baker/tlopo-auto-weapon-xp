@@ -13,42 +13,32 @@ def check_enemy_exists():
     with mss.mss() as sct:
 
         # -------- Check if enemy exists ---------
-        """
 
-        monitor_left = {
-            "left": 1390,
-            "top": 199,
+        # Health Bar Green: Click at (1143, 189) -> BGR = (25, 179, 25)
+
+        monitor_healthbar = {
+            "left": 1143,
+            "top": 189,
             "width": 1,
             "height": 1
         }
 
-        img = np.array(sct.grab(monitor_left))
+        img = np.array(sct.grab(monitor_healthbar))
         b, g, r, a = img[0, 0]
 
-        if b == 254 and g == 254 and r == 254:
-            print ("Restarting Game...")
-            pyautogui.click(1293, 1095) # Click Brew Again
+        if b == 25 and g == 179 and r == 25:
+            # -------- Attack --------
+            pyautogui.press('ctrl')
             time.sleep(0.5)
-            pyautogui.click(1685, 910) # Click OK to maxed out potions
+            pyautogui.press('ctrl')
             time.sleep(0.5)
-        
-        """
-        
-        # -------- Attack --------
-        pyautogui.press('ctrl')
-        time.sleep(0.5)
-        pyautogui.press('ctrl')
-        time.sleep(0.5)
-        pyautogui.press('ctrl')
-        time.sleep(1)
-        pyautogui.press('ctrl')
-        time.sleep(1)
-        pyautogui.press('ctrl')
-        time.sleep(1)
-
-
-
-
+            pyautogui.press('ctrl')
+            time.sleep(1)
+            pyautogui.press('ctrl')
+            time.sleep(1)
+            pyautogui.press('ctrl')
+            time.sleep(1)
+            
 def worker():
     global running, stop_program
 
