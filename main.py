@@ -26,7 +26,15 @@ def check_enemy_exists():
         img = np.array(sct.grab(monitor_healthbar))
         b, g, r, a = img[0, 0]
 
-        if b == 25 and g == 179 and r == 25:
+        # (25, 179, 25) GREEN HEALTH BAR
+        # (25, 255, 255) YELLOW HEALTH BAR
+        # (0, 0, 255) RED HEALTH BAR
+
+        if (b, g, r) in [
+            (25, 179, 25),
+            (25, 255, 255),
+            (0, 0, 255)
+        ]:
             # -------- Attack --------
             pyautogui.press('ctrl')
             time.sleep(0.5)
@@ -38,6 +46,30 @@ def check_enemy_exists():
             time.sleep(1)
             pyautogui.press('ctrl')
             time.sleep(1)
+        
+        # If loot chest, open and take items
+
+        pyautogui.press('shift')
+        time.sleep(0.5)
+
+        # Click at (1135, 559) -> BGR = (101, 171, 204)
+        monitor_loot = {
+            "left": 1135,
+            "top": 559,
+            "width": 1,
+            "height": 1
+        }
+
+        img_loot = np.array(sct.grab(monitor_loot))
+        b, g, r, a = img_loot[0, 0]
+
+        if b == 101 and g == 171 and r == 204:
+            
+            # Click Take All
+            pyautogui.moveTo(1054, 843)
+            pyautogui.click()
+            time.sleep(2)
+            pyautogui.click()
             
 def worker():
     global running, stop_program
