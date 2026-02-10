@@ -35,8 +35,16 @@ def check_enemy_exists():
         """
         
         # -------- Attack --------
+        pyautogui.press('ctrl')
+        time.sleep(0.5)
+        pyautogui.press('ctrl')
+        time.sleep(0.5)
+        pyautogui.press('ctrl')
+        time.sleep(1)
+        pyautogui.press('ctrl')
+        time.sleep(1)
+        pyautogui.press('ctrl')
 
-        
 
 
 
