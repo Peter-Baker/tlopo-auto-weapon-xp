@@ -8,17 +8,35 @@ from pynput import keyboard
 running = False
 stop_program = False
 
+def attack_sword():
+    time.sleep(2.0)
+    pyautogui.press('ctrl')
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(1)
+    pyautogui.press('ctrl')
+    time.sleep(1)
+    pyautogui.press('ctrl')
+    time.sleep(1)
+
+def attack_pistol():
+    time.sleep(1.0)
+    pyautogui.press('ctrl')
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(1)
+
 def check_enemy_exists():
 
     with mss.mss() as sct:
 
         # -------- Check if enemy exists ---------
 
-        # Health Bar Green: Click at (1143, 189) -> BGR = (25, 179, 25)
-
         monitor_healthbar = {
-            "left": 1143,
-            "top": 189,
+            "left": 1160,
+            "top": 190,
             "width": 1,
             "height": 1
         }
@@ -36,26 +54,20 @@ def check_enemy_exists():
             (0, 0, 255)
         ]:
             # -------- Attack --------
-            pyautogui.press('ctrl')
-            time.sleep(0.5)
-            pyautogui.press('ctrl')
-            time.sleep(0.5)
-            pyautogui.press('ctrl')
-            time.sleep(1)
-            pyautogui.press('ctrl')
-            time.sleep(1)
-            pyautogui.press('ctrl')
-            time.sleep(1)
+            #attack_sword()
+            attack_pistol()
         
         # If loot chest, open and take items
+
+        #Click at (1147, 659) -> BGR = (93, 169, 200)
+        #Click at (1067, 852) -> BGR = (11, 15, 27)
 
         pyautogui.press('shift')
         time.sleep(0.5)
 
-        # Click at (1135, 559) -> BGR = (101, 171, 204)
         monitor_loot = {
-            "left": 1135,
-            "top": 559,
+            "left": 1147,
+            "top": 659,
             "width": 1,
             "height": 1
         }
@@ -63,10 +75,10 @@ def check_enemy_exists():
         img_loot = np.array(sct.grab(monitor_loot))
         b, g, r, a = img_loot[0, 0]
 
-        if b == 101 and g == 171 and r == 204:
+        if b == 93 and g == 169 and r == 200:
             
             # Click Take All
-            pyautogui.moveTo(1054, 843)
+            pyautogui.moveTo(1067, 852)
             pyautogui.click()
             time.sleep(2)
             pyautogui.click()
