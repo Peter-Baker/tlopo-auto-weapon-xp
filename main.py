@@ -28,6 +28,21 @@ def attack_pistol():
     pyautogui.press('ctrl')
     time.sleep(1)
 
+def attack_knife():
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+    time.sleep(1)
+    pyautogui.press('ctrl')
+
+def attack_grenade():
+    time.sleep(0.5)
+    pyautogui.press('ctrl')
+
+
 def check_enemy_exists():
 
     with mss.mss() as sct:
@@ -55,7 +70,9 @@ def check_enemy_exists():
         ]:
             # -------- Attack --------
             #attack_sword()
-            attack_pistol()
+            #attack_pistol()
+            #attack_knife()
+            attack_grenade()
         
         # If loot chest, open and take items
 
@@ -66,8 +83,8 @@ def check_enemy_exists():
         time.sleep(0.5)
 
         monitor_loot = {
-            "left": 1147,
-            "top": 659,
+            "left": 1150,
+            "top": 626,
             "width": 1,
             "height": 1
         }
@@ -75,10 +92,10 @@ def check_enemy_exists():
         img_loot = np.array(sct.grab(monitor_loot))
         b, g, r, a = img_loot[0, 0]
 
-        if b == 93 and g == 169 and r == 200:
+        if b == 96 and g == 171 and r == 203: #Click at (1150, 626) -> BGR = (96, 171, 203)
             
             # Click Take All
-            pyautogui.moveTo(1067, 852)
+            pyautogui.moveTo(1056, 846) #1056, 846
             pyautogui.click()
             time.sleep(2)
             pyautogui.click()
